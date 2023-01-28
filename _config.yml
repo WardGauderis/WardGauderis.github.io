@@ -199,3 +199,7 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+# Jekyll::Compose configuration
+jekyll_compose:
+  auto_open: true
