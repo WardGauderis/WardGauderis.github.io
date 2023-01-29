@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CSS Effects Try-Out
+title: Trying out CSS Effects
 date: 2023-01-28 02:28 +0100
 ---
 ## Hacker Effect
