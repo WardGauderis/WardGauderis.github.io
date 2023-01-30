@@ -13,7 +13,7 @@ date: 2023-01-28 02:28 +0100
     scrolling="no"
 ></iframe>
 
-## Explosion Effects
+## Explosion Effect
 
 <iframe
     src="{% link effects/explosion.html %}"
@@ -27,6 +27,15 @@ date: 2023-01-28 02:28 +0100
 <iframe
     src="{% link effects/sliding.html %}"
     style="width: 100%; aspect-ratio: 2;"
+    frameborder="0"
+    scrolling="no"
+></iframe>
+
+## Curtain Effect
+
+<iframe
+    src="{% link effects/curtain.html %}"
+    style="width: 100%; aspect-ratio: 16/9;"
     frameborder="0"
     scrolling="no"
 ></iframe>

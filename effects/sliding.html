@@ -1,9 +1,6 @@
 <style>
     body {
-        height: 100vh;
-        width: 100vw;
         background-color: black;
-        margin: 0;
         overflow: hidden;
     }
 
@@ -40,16 +37,17 @@
 <script>
     const track = document.getElementById("track");
 
-    window.onmousedown = e => {
+    window.onpointerdown = e => {
         track.dataset.mouseDownAt = e.clientX;
     };
 
-    window.onmouseup = e => {
+
+    window.onpointerup = e => {
         track.dataset.mouseDownAt = "0";
         track.dataset.prevPercentage = track.dataset.percentage;
     };
 
-    window.onmousemove = e => {
+    window.onpointermove = e => {
         if (track.dataset.mouseDownAt === "0") return;
 
         const mouse_delta = e.clientX - parseFloat(track.dataset.mouseDownAt),
@@ -68,8 +66,7 @@
         });
 
         for (const image of track.children) {
-            // image.style.objectPosition = `${100 + next_percentage}% 50%`;
-            track.animate({
+            image.animate({
                 objectPosition: `${100 + next_percentage}% 50%`
             }, {
                 duration: 1200,
