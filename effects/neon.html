@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<style>
+    :root {
+        --neon: hsl(317 100% 54%);
+        --bg: hsl(323 21% 16%);
+    }
+
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        background: var(--bg);
+        font-family: "Balsamiq Sans", cursive;
+        color: var(--neon);
+    }
+
+    .neon {
+        font-size: 17vmin;
+
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--neon);
+        border: var(--neon) 0.125em solid;
+        padding: 0.25em 1em;
+        border-radius: 0.25em;
+
+        text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),0 0 0.45em currentColor;
+        box-shadow: inset 0 0 0.5em 0 var(--neon), 0 0 0.5em 0 var(--neon);
+
+        position: relative;
+        top: -10%;
+    }
+
+    .neon::before {
+        pointer-events: none;
+        content: "";
+        position: absolute;
+        top: 120%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--neon);
+
+        transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+        filter: blur(1em);
+        opacity: 0.6;
+    }
+
+    .neon::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-shadow: 0 0 2em 0.05em var(--neon);
+        opacity: 0;
+
+        background-color: var(--neon);
+        z-index: -1;
+
+        transition: opacity 100ms linear;
+    }
+
+    .neon:hover, .neon:focus {
+        color: var(--bg);
+        text-shadow: none;
+    }
+
+    .neon:hover::before, .neon:focus::before {
+        opacity: 1;
+    }
+    
+    .neon:hover::after, .neon:focus::after {
+        opacity: 1;
+    }
+
+</style>
+
+
+<body>
+    <a href="#" class="neon">Neon</a>
+</body>
