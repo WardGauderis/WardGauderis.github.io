@@ -7,6 +7,7 @@ tags: [frontend]
 ---
 
 A collection of CSS effects I've been playing with, many inspired by Hyperplexed.
+
 ## Hacker Effect
 
 <iframe
@@ -48,6 +49,14 @@ A collection of CSS effects I've been playing with, many inspired by Hyperplexed
 <iframe
     src="{% link effects/neon.html %}"
     style="width: 100%; aspect-ratio: 2;"
+    frameborder="0"
+    scrolling="no"
+></iframe>
+
+## Fluid Effect
+<iframe
+    src="{% link effects/fluid.html %}"
+    style="width:100%; aspect-ratio: 16/9;"
     frameborder="0"
     scrolling="no"
 ></iframe>

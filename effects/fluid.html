@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fluid Effect</title>
+
+    <style>
+        /* * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        } */
+
+        body {
+            height: 100vh;
+            background-color: #ffefdb;
+            color: #352a22;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 75vmin;
+            height: 75vmin;
+            font-size: 3.5vmin;
+            position: relative;
+            border: #352a22 0.3rem solid;
+            border-radius: 0.6rem;
+            background-color: burlywood;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .fluid {
+            min-width: 300%;
+            min-height: 300%;
+            border-radius: 35%;
+            position: absolute;
+            bottom: -20%;
+            background-color: #cc172f;
+            background-color: #ffefdb;
+            animation: spin 8s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes spin {
+            75%, 100% {
+                transform: translateY(-50%) rotate(360deg);
+            }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="fluid"></div>
+
+        <h1>Empty Thoughs</h1>
+        <p>A blog without content</p>
+    </div>
+</body>
+
+</html>
