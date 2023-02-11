@@ -1,11 +1,12 @@
 ---
 layout: post
 title: Trying out CSS Effects
-date: 2023-01-28 02:28 +0100
+excerpt: A collection of CSS effects I've been playing with
+categories: [experiments]
+tags: [frontend]
 ---
 
 A collection of CSS effects I've been playing with, many inspired by Hyperplexed.
-
 ## Hacker Effect
 
 <iframe
