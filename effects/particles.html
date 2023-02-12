@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Particles Effect</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0c192c;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .particles {
+            position: relative;
+            display: flex;
+        }
+
+        .particles span {
+            position: relative;
+            width: 2vw;
+            height: 2vw;
+            aspect-ratio: 1;
+            background: #4fc3dc;
+            margin: 0 1vw;
+            border-radius: 50%;
+            box-shadow: 0 0 0 1vw #4fc3dc44,
+                0 0 5vw #4fc3dc,
+                0 0 10vw #4fc3dc;
+            animation: particle 15s linear infinite;
+            animation-duration: calc(7s * var(--i));
+        }
+
+        .particles span:nth-child(even) {
+            background-color: #ff2d75;
+            box-shadow: 0 0 0 1vw #ff2d7544,
+                0 0 5vw #ff2d75,
+                0 0 10vw #ff2d75;
+        }
+
+        @keyframes particle {
+            0% {
+                transform: translateY(100vh) scale(0);
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="particles">
+        </div>
+    </div>
+</body>
+
+<script>
+    function resize() {
+        const particles = document.querySelector(".particles");
+        particles.innerHTML = "";
+        const number = 30;
+
+        for (let i = 1; i < number; i++) {
+            const span = document.createElement("span");
+            span.style.setProperty("--i", Math.random() + 0.1);
+            particles.appendChild(span);
+        }
+    }
+   
+    window.addEventListener("resize", resize);
+    resize();
+</script>
+
+</html>

@@ -60,3 +60,11 @@ A collection of CSS effects I've been playing with, many inspired by Hyperplexed
     frameborder="0"
     scrolling="no"
 ></iframe>
+
+## Particles Effect
+<iframe
+    src="{% link effects/particles.html %}"
+    style="width:100%; aspect-ratio: 16/9;"
+    frameborder="0"
+    scrolling="no"
+></iframe>
