@@ -4,5 +4,5 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
+*Empty Thoughts* is a work in progress blog/personal website.
+It is built using [Jekyll](https://jekyllrb.com/) and [GitHub Pages](https://pages.github.com/). The source code is available on [GitHub](https://github.com/WardGauderis).
