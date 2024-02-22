@@ -8,7 +8,6 @@ import { Lut } from 'three/addons/math/Lut.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-// import katex from 'katex';
 
 import { LineMaterial } from 'three/addons/lines/LineMaterial.js';
 import { LineGeometry } from 'three/addons/lines/LineGeometry.js';
@@ -61,8 +60,8 @@ window.addEventListener('resize', function () {
 	camera.aspect = container.clientWidth / container.clientHeight;
 	camera.updateProjectionMatrix();
 
-	uiCamera.left = -uiContainer.clientWidth / uiContainer.clientHeight;
-	uiCamera.right = uiContainer.clientWidth / uiContainer.clientHeight;
+	uiCamera.left = -uiContainer.clientWidth / uiContainer.clientHeight * 1.1;
+	uiCamera.right = uiContainer.clientWidth / uiContainer.clientHeight * 1.1;
 	uiCamera.updateProjectionMatrix();
 
 	renderer.setSize(container.clientWidth, container.clientHeight);
@@ -109,7 +108,7 @@ let sprite = new THREE.Sprite(new THREE.SpriteMaterial({
 }));
 sprite.material.map.colorSpace = THREE.SRGBColorSpace;
 sprite.scale.x = 0.125;
-sprite.scale.y = 0.85;
+sprite.scale.y = 0.9;
 // sprite.position.y = -1.0 + 0.102 / 2;
 sprite.position.y = -0.7;
 uiScene.add(sprite);
@@ -124,7 +123,7 @@ let plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.ShaderMateri
 	vertexShader: document.getElementById('vertexShader2').textContent,
 	fragmentShader: document.getElementById('fragmentShader2').textContent
 }));
-plane.scale.multiplyScalar(0.85);
+plane.scale.multiplyScalar(0.9);
 const uiObject = new THREE.Object3D();
 uiObject.name = 'uiInteractable';
 uiObject.add(plane);
@@ -191,7 +190,7 @@ scene.add(label);
 
 label = label.clone();
 katex.render('0', label.element);
-label.position.set(-0.425, -0.8, 0);
+label.position.set(-0.45, -0.8, 0);
 uiScene.add(label);
 
 label = label.clone();
@@ -201,7 +200,7 @@ uiScene.add(label);
 
 label = label.clone();
 katex.render('1', label.element);
-label.position.set(0.425, -0.8, 0);
+label.position.set(0.45, -0.8, 0);
 uiScene.add(label);
 
 //
@@ -209,32 +208,32 @@ uiScene.add(label);
 
 label = label.clone();
 katex.render('\\ket{0}', label.element);
-label.position.set(-0.425, -0.51+0.025, 0);
+label.position.set(-0.45, -0.51, 0);
 uiScene.add(label);
 
 label = label.clone();
 katex.render('\\ket{+}', label.element);
-label.position.set(0, -0.51+0.025, 0);
+label.position.set(0, -0.51, 0);
 uiScene.add(label);
 
 label = label.clone();
 katex.render('\\ket{1}', label.element);
-label.position.set(0.425, -0.51+0.025, 0);
+label.position.set(0.45, -0.51, 0);
 uiScene.add(label);
 
 label = label.clone();
 katex.render('\\ket{0}', label.element);
-label.position.set(-0.51+0.025, -0.425, 0);
+label.position.set(-0.51, -0.45, 0);
 uiScene.add(label);
 
 label = label.clone();
 katex.render('\\ket{+}', label.element);
-label.position.set(-0.51+0.025, 0, 0);
+label.position.set(-0.51, 0, 0);
 uiScene.add(label);
 
 label = label.clone();
 katex.render('\\ket{1}', label.element);
-label.position.set(-0.51+0.025, 0.425, 0);
+label.position.set(-0.51, 0.45, 0);
 uiScene.add(label);
 
 //
@@ -336,11 +335,11 @@ let geometry = new LineGeometry();
 geometry.setPositions(positions);
 let mat_left = new LineMaterial({
 	color: 0x8338EC,
-	linewidth: 7,
+	linewidth: 8,
 });
 const mat_right = new LineMaterial({
 	color: 0x39EDDE,
-	linewidth: 7,
+	linewidth: 8,
 });
 let l = new Line2(geometry, mat_left);
 l.scale.multiplyScalar(radius * 1.005);
@@ -352,13 +351,13 @@ l.position.x = 1.25 * radius;
 l.material = mat_right;
 scene.add(l);
 
-const left_positions = [-0.425, -0.445, 0, 0.425, -0.445, 0];
+const left_positions = [-0.45, -0.47, 0, 0.45, -0.47, 0];
 geometry = new LineGeometry();
 l = new Line2(geometry, mat_left);
 l.geometry.setPositions(left_positions);
 uiScene.add(l);
 
-const right_positions = [-0.445, -0.425, 0, -0.445, 0.425, 0];
+const right_positions = [-0.47, -0.45, 0, -0.47, 0.45, 0];
 geometry = new LineGeometry();
 l = new Line2(geometry, mat_right);
 l.geometry.setPositions(right_positions);
