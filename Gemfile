@@ -8,3 +8,5 @@ end
 
 # Jekyll::Compose
 gem 'jekyll-compose', group: [:jekyll_plugins]
+# required for running older version
+gem "json", "~> 2.7"

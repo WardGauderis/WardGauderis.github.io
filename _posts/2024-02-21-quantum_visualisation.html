@@ -1,0 +1,199 @@
+---
+layout: none
+title: "Classical vs Quantum Concept Combinations: A Visualisation"
+excerpt: A WIP visualisation of the difference between classical and quantum concept combinations.
+categories: [master, PhD]
+tags: [Quantum, Compositionality, Concepts]
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Concept Visualisation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+        integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+
+
+    <script type="importmap">
+            {
+              "imports": {
+                "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+              }
+            }
+        </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
+        integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"
+        integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8"
+        crossorigin="anonymous"></script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background: rgb(17, 17, 17);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(40, 40, 40, 1) 50%, rgba(0, 0, 0, 1) 100%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .lil-gui {
+            --width: 21vw;
+            --name-width: 25%
+        }
+
+        .katex {
+            font-size: 1.2em;
+        }
+
+        /* make container half the size */
+        #container {
+            position: relative;
+            float: left;
+            width: 50%;
+            height: 100%;
+        }
+
+        #ui-container {
+            position: relative;
+            float: right;
+            width: 25%;
+            height: 100%;
+        }
+
+        #gui-container {
+            position: absolute;
+            top: 0px;
+            right: 9%;
+            z-index: 100;
+        }
+
+        #text {
+            position: relative;
+            float: left;
+            width: 25%;
+            height: 100%;
+            color: rgb(200, 200, 200);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1em;
+            box-sizing: border-box;
+            padding: 1em;
+        }
+
+        #text-inner {
+            padding: 0.75em;
+            height: 100%;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.2);
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+
+        #matrix {
+            margin: auto;
+        }
+    </style>
+
+<body>
+    <div id="text">
+        <div id="text-inner">
+            <h2>Quantum vs Classical Concept Combinations (WIP)</h2>
+            <span id="matrix"></span>
+
+            Controls:
+            <ul>
+                <li>Click and drag to rotate</li>
+                <li>Scroll to zoom</li>
+                <li>Click left qubit to set state</li>
+                <li>Drag 'entanglement' slider to gradually mix between classical and quantum concept combinations</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="container">
+
+    </div>
+    <div id="ui-container">
+        <div id="gui-container">
+
+        </div>
+    </div>
+
+    <script id="vertexShader" type="x-shader/x-vertex">
+        varying float alpha_right;
+        varying float theta_right;
+
+        const float PI = 3.1415926535897932384626433832795;
+
+        void main() {
+            alpha_right = atan(position.z, position.x);
+            theta_right = atan(sqrt(position.x * position.x + position.z * position.z), position.y);
+
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );
+        }
+    </script>
+
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        varying float alpha_right;
+        varying float theta_right;
+
+        uniform float entanglement;
+        uniform float alpha_left;
+        uniform float theta_left;
+
+        uniform vec3 lut[257];
+          
+        void main() {
+            float a = cos(theta_left / 2.0);
+            float b = sin(theta_left / 2.0) * cos(alpha_left);
+            float c = sin(theta_left / 2.0) * sin(alpha_left);
+            float d = cos(theta_right / 2.0);
+            float e = sin(theta_right / 2.0) * cos(alpha_right);
+            float f = -sin(theta_right / 2.0) * sin(alpha_right);
+
+            float p = a*a*d*d + (b*b + c*c)*e*e + (b*b + c*c)*f*f + 2.*(a*b*d*e - a*c*d*f)*entanglement;
+
+            gl_FragColor = vec4(lut[int(p * 256.0)], 1.0);
+        }
+    </script>
+
+    <script id="vertexShader2" type="x-shader/x-vertex">
+        varying vec2 vuv;
+
+        void main() {
+            vuv = uv;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 );
+        }
+    </script>
+
+    <script id="fragmentShader2" type="x-shader/x-fragment">
+        varying vec2 vuv;
+
+        uniform float entanglement;
+        uniform vec3 lut[257];
+
+        const float PI = 3.1415926535897932384626433832795;
+
+        void main() {
+            float x = vuv.x * PI / 2.0;
+            float y = vuv.y * PI / 2.0;
+
+            // float p = 2.0 * x * y + 1.0 - x - y + 2.0 * entanglement * sqrt(x * y * (1.0 - x) * (1.0 - y));    
+            float p = 2.0*entanglement*cos(x)*cos(y)*sin(x)*sin(y) + pow(cos(x)*cos(y), 2.0) + pow(sin(x)*sin(y), 2.0);  
+
+            gl_FragColor = vec4(lut[int(p * 256.0)], 1.0);
+        }
+    </script>
+
+    <script type="module" src="/../assets/lib/visualisation.js"></script>
+</body>
+
+</html>

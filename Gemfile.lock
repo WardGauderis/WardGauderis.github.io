@@ -63,6 +63,7 @@ GEM
       jekyll-sitemap (~> 1.4)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
+    json (2.7.1)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -103,6 +104,7 @@ DEPENDENCIES
   html-proofer (~> 3.18)
   jekyll-compose
   jekyll-theme-chirpy (~> 5.5, >= 5.5.2)
+  json (~> 2.7)
 
 BUNDLED WITH
    2.4.1
